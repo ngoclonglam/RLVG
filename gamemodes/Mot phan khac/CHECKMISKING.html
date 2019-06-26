@@ -1,0 +1,50 @@
+<script> 
+
+function checkIt(str) { 
+
+
+var arrBracket = new Array(); 
+var arrLineBkt = new Array(); 
+
+var opens = 0; 
+var lines = 0; 
+
+for(i = 0, j = str.length; i != j; i++) { 
+
+if(str[i] == '{') { 
+arrBracket[opens] = 1; 
+arrLineBkt[opens] = lines; 
+opens++; 
+} 
+
+if(str[i] == '}') { 
+arrBracket[opens] = 0; 
+if(!opens) { 
+return alert("ERROR EXCESSIVE '}' on line " + lines); 
+} 
+opens--; 
+
+} 
+
+if(str[i] == '\n') lines ++; 
+} 
+
+if(!opens) { 
+alert('NO ERROR !!1 YOU IS BEST !!'); 
+} 
+
+
+for(i = 0; i != opens; i++) { 
+if(arrBracket[i]) { 
+alert("ERROR '{' on line" + arrLineBkt[i]); 
+} 
+} 
+
+return true; 
+} 
+
+
+</script> 
+
+<textarea id=area>Put code here</textarea> 
+<input type=button onClick=checkIt(document.getElementById('area').value) value=Hey /> 
